@@ -1,17 +1,19 @@
-name: Integración Continua
-on:
-[push, pull_request]
-jobs:
-build:
-runs-on: ubuntu -latest
 steps:
 - name: Checkout del código
-uses: actions/checkout@v4
+  # Acción que descarga el repositorio.
+  uses: actions/checkout@v4
+  
 - name: Configurar Node.js
-uses: actions/setup -node@v4
-with:
-node-version: 'lts/*'
+  # Acción que instala el entorno de Node.js.
+  uses: actions/setup-node@v4
+  with:
+    # Usa la versión de soporte a largo plazo (LTS).
+    node-version: 'lts/*'
+    
 - name: Instalar dependencias
-run: npm ci
+  # Comando para instalar dependencias de forma limpia y rápida en CI.
+  run: npm ci
+  
 - name: Ejecutar pruebas
-run: npm test --silent
+  # Comando para correr los tests unitarios.
+  run: npm test --silent
